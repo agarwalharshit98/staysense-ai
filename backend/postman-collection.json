@@ -1,0 +1,422 @@
+{
+  "info": {
+    "name": "StaySense AI API",
+    "description": "API collection for Homestay Intelligence Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Reviews",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:5000/api/reviews",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews"]
+        },
+        "description": "Retrieve all reviews with optional filters"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:5000/api/reviews",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "reviews"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"count\": 5,\n  \"data\": [\n    {\n      \"id\": 1,\n      \"guestName\": \"John Smith\",\n      \"rating\": 5,\n      \"text\": \"Amazing stay! The host was incredibly friendly and the location was perfect.\",\n      \"sentiment\": \"positive\",\n      \"themes\": [\"host\", \"location\"],\n      \"date\": \"2024-01-15\",\n      \"response\": null\n    },\n    {\n      \"id\": 2,\n      \"guestName\": \"Sarah Johnson\",\n      \"rating\": 4,\n      \"text\": \"Great experience overall. The place was clean but the WiFi was a bit slow.\",\n      \"sentiment\": \"positive\",\n      \"themes\": [\"cleanliness\", \"value\"],\n      \"date\": \"2024-01-20\",\n      \"response\": null\n    }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Single Review",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:5000/api/reviews/1",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews", "1"]
+        },
+        "description": "Retrieve a single review by ID"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:5000/api/reviews/1",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "reviews", "1"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": 1,\n    \"guestName\": \"John Smith\",\n    \"rating\": 5,\n    \"text\": \"Amazing stay! The host was incredibly friendly and the location was perfect.\",\n    \"sentiment\": \"positive\",\n    \"themes\": [\"host\", \"location\"],\n    \"date\": \"2024-01-15\",\n    \"response\": null\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Create Review",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"guestName\": \"Alice Cooper\",\n  \"rating\": 5,\n  \"text\": \"Fantastic experience! The host was wonderful and the place was spotless.\",\n  \"sentiment\": \"positive\",\n  \"themes\": [\"host\", \"cleanliness\"],\n  \"date\": \"2024-03-01\"\n}"
+        },
+        "url": {
+          "raw": "localhost:5000/api/reviews",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews"]
+        },
+        "description": "Create a new review"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"guestName\": \"Alice Cooper\",\n  \"rating\": 5,\n  \"text\": \"Fantastic experience! The host was wonderful and the place was spotless.\",\n  \"sentiment\": \"positive\",\n  \"themes\": [\"host\", \"cleanliness\"],\n  \"date\": \"2024-03-01\"\n}"
+            },
+            "url": {
+              "raw": "localhost:5000/api/reviews",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "reviews"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": 6,\n    \"guestName\": \"Alice Cooper\",\n    \"rating\": 5,\n    \"text\": \"Fantastic experience! The host was wonderful and the place was spotless.\",\n    \"sentiment\": \"positive\",\n    \"themes\": [\"host\", \"cleanliness\"],\n    \"date\": \"2024-03-01\",\n    \"response\": null\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Review",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"guestName\": \"John Smith\",\n  \"rating\": 4,\n  \"text\": \"Amazing stay! The host was incredibly friendly and the location was perfect. Updated review.\",\n  \"sentiment\": \"positive\",\n  \"themes\": [\"host\", \"location\"],\n  \"date\": \"2024-01-15\",\n  \"response\": \"Thank you for your wonderful review!\"\n}"
+        },
+        "url": {
+          "raw": "localhost:5000/api/reviews/1",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews", "1"]
+        },
+        "description": "Update an existing review by ID"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"guestName\": \"John Smith\",\n  \"rating\": 4,\n  \"text\": \"Amazing stay! The host was incredibly friendly and the location was perfect. Updated review.\",\n  \"sentiment\": \"positive\",\n  \"themes\": [\"host\", \"location\"],\n  \"date\": \"2024-01-15\",\n  \"response\": \"Thank you for your wonderful review!\"\n}"
+            },
+            "url": {
+              "raw": "localhost:5000/api/reviews/1",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "reviews", "1"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": 1,\n    \"guestName\": \"John Smith\",\n    \"rating\": 4,\n    \"text\": \"Amazing stay! The host was incredibly friendly and the location was perfect. Updated review.\",\n    \"sentiment\": \"positive\",\n    \"themes\": [\"host\", \"location\"],\n    \"date\": \"2024-01-15\",\n    \"response\": \"Thank you for your wonderful review!\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Review",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:5000/api/reviews/5",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews", "5"]
+        },
+        "description": "Delete a review by ID"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:5000/api/reviews/5",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "reviews", "5"]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": "plain",
+          "header": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "Search Reviews",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:5000/api/reviews/search?q=amazing",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews", "search"],
+          "query": [
+            {
+              "key": "q",
+              "value": "amazing"
+            }
+          ]
+        },
+        "description": "Search reviews by text, guest name, or theme"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:5000/api/reviews/search?q=amazing",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "reviews", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "amazing"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"count\": 1,\n  \"query\": \"amazing\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"guestName\": \"John Smith\",\n      \"rating\": 5,\n      \"text\": \"Amazing stay! The host was incredibly friendly and the location was perfect.\",\n      \"sentiment\": \"positive\",\n      \"themes\": [\"host\", \"location\"],\n      \"date\": \"2024-01-15\",\n      \"response\": null\n    }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Review Statistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:5000/api/reviews/stats",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews", "stats"]
+        },
+        "description": "Get review statistics including sentiment and theme counts"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:5000/api/reviews/stats",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "reviews", "stats"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"totalReviews\": 5,\n    \"averageRating\": 3.8,\n    \"sentimentCounts\": {\n      \"positive\": 3,\n      \"neutral\": 1,\n      \"negative\": 1\n    },\n    \"themeCounts\": {\n      \"host\": 2,\n      \"location\": 1,\n      \"cleanliness\": 2,\n      \"value\": 2,\n      \"food\": 1\n    }\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Add Response to Review",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"response\": \"Thank you for your feedback! We appreciate your review and hope to host you again.\"\n}"
+        },
+        "url": {
+          "raw": "localhost:5000/api/reviews/2/response",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews", "2", "response"]
+        },
+        "description": "Add a host response to a review"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"response\": \"Thank you for your feedback! We appreciate your review and hope to host you again.\"\n}"
+            },
+            "url": {
+              "raw": "localhost:5000/api/reviews/2/response",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "reviews", "2", "response"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": 2,\n    \"guestName\": \"Sarah Johnson\",\n    \"rating\": 4,\n    \"text\": \"Great experience overall. The place was clean but the WiFi was a bit slow.\",\n    \"sentiment\": \"positive\",\n    \"themes\": [\"cleanliness\", \"value\"],\n    \"date\": \"2024-01-20\",\n    \"response\": \"Thank you for your feedback! We appreciate your review and hope to host you again.\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Filter by Sentiment",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:5000/api/reviews?sentiment=positive",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews"],
+          "query": [
+            {
+              "key": "sentiment",
+              "value": "positive"
+            }
+          ]
+        },
+        "description": "Filter reviews by sentiment"
+      }
+    },
+    {
+      "name": "Filter by Theme",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:5000/api/reviews?theme=cleanliness",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "reviews"],
+          "query": [
+            {
+              "key": "theme",
+              "value": "cleanliness"
+            }
+          ]
+        },
+        "description": "Filter reviews by theme"
+      }
+    }
+  ]
+}
